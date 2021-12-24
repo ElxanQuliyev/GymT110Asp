@@ -27,9 +27,9 @@ namespace GymT110Asp.Controllers
             HomeVM vm = new HomeVM()
             {
                 Sliders=_context.Sliders.ToList(),
-                Products=_context.Products.ToList()
+                Products=_context.Products.ToList(),
+                Blogs=_context.Blogs.ToList()
             };
-
             return View(vm);
         }
 
@@ -37,6 +37,34 @@ namespace GymT110Asp.Controllers
         {
             return View();
         }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public List<Blog> FindBlogById(int? categoryId,int? blogId)
+        {
+            return _context.Blogs.Where(x => x.Id != blogId && x.BlogCategoryId == categoryId).ToList();
+        }
+
+        public IActionResult FeaturedDetail(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var findBlog = _context.Blogs.FirstOrDefault(x => x.Id == id);
+
+            if (findBlog == null) return NotFound();
+
+            BlogVM blogVm = new()
+            {
+                BlogSingle = findBlog,
+                SameBlogs=FindBlogById(findBlog.BlogCategoryId,id)
+            };
+            return View(blogVm);
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

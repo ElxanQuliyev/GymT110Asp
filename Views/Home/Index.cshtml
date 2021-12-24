@@ -886,62 +886,26 @@
     </div>
     <div class="container">
         <div class="gym-carousel nav-control-top" data-loop="true" data-items="3" data-margin="30" data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="1" data-r-x-medium-nav="true" data-r-x-medium-dots="false" data-r-small="2" data-r-small-nav="true" data-r-small-dots="false" data-r-medium="3" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="3" data-r-large-nav="true" data-r-large-dots="false">
-            <div class="single-latest-news">
-                <div class="single-news">
-                    <div class="single-image"><img src="~/frontend/img/news1.jpg" alt="news1"></div>
-                    <div class="date">
-                        20
-                        <br>Jan
-                        <br>2016
+            @foreach (var item in Model.Blogs)
+            {
+                <div class="single-latest-news">
+                    <div class="single-news">
+                        <div class="single-image"><img src="@item.PhotoUrl" alt="news1"></div>
+                        <div class="date">
+                            @item.PublishDate.Day
+                            <br>@item.PublishDate.ToString("MMM")
+                            <br>@item.PublishDate.Year
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <h3><a href="/home/featuredDetail/@item.Id">@item.Header</a></h3>
+                        <p>@(item.Description.Length>120? item.Description.Substring(0,120):item.Description)
+                            <a href="/home/featuredDetail/@item.Id">...</a></p>
                     </div>
                 </div>
-                <div class="news-content">
-                    <h3><a href="https://www.radiustheme.com/demo/html/gymedge/one-page/single-news.html">Body Combat</a></h3>
-                    <p>BodyCombat is the empowering cardio workout are where you are exercitation ullamco totally unleashed. This fiercely ...</p>
-                </div>
-            </div>
-            <div class="single-latest-news">
-                <div class="single-news">
-                    <div class="single-image"><img src="~/frontend/img/news2.jpg" alt="news2"></div>
-                    <div class="date">
-                        20
-                        <br>Jan
-                        <br>2016
-                    </div>
-                </div>
-                <div class="news-content">
-                    <h3><a href="https://www.radiustheme.com/demo/html/gymedge/one-page/single-news.html">Zumba Fitness</a></h3>
-                    <p>BodyCombat is the empowering cardio workout are where you are exercitation ullamco totally unleashed. This fiercely ...</p>
-                </div>
-            </div>
-            <div class="single-latest-news">
-                <div class="single-news">
-                    <div class="single-image"><img src="~/frontend/img/news3.jpg" alt="news3"></div>
-                    <div class="date">
-                        20
-                        <br>Jan
-                        <br>2016
-                    </div>
-                </div>
-                <div class="news-content">
-                    <h3><a href="https://www.radiustheme.com/demo/html/gymedge/one-page/single-news.html">Running Practice</a></h3>
-                    <p>BodyCombat is the empowering cardio workout are where you are exercitation ullamco totally unleashed. This fiercely ...</p>
-                </div>
-            </div>
-            <div class="single-latest-news">
-                <div class="single-news">
-                    <div class="single-image"><img src="~/frontend/img/news1.jpg" alt="news1"></div>
-                    <div class="date">
-                        20
-                        <br>Jan
-                        <br>2016
-                    </div>
-                </div>
-                <div class="news-content">
-                    <h3><a href="https://www.radiustheme.com/demo/html/gymedge/one-page/single-news.html">Body Combat</a></h3>
-                    <p>BodyCombat is the empowering cardio workout are where you are exercitation ullamco totally unleashed. This fiercely ...</p>
-                </div>
-            </div>
+            }
+
+
         </div>
     </div>
 </div>
